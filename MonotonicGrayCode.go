@@ -1,8 +1,6 @@
 // Implementation based on python script http://sciyoshi.com/2010/12/gray-codes/
 
-package main
-
-import "fmt"
+package monotonic_gray_code
 
 func rotate_right(x []int, n int) []int {
 	l := len(x)
@@ -70,10 +68,4 @@ func monotonic(n int) (ret [][]int) {
 		ret = append(ret, p2...)
 	}
 	return
-}
-
-func main() {
-	for i := 1; i < 5; i++ {
-		fmt.Println("monotonic(", i, "):", monotonic(i))
-	}
 }
