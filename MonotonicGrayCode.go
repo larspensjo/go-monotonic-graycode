@@ -69,3 +69,13 @@ func monotonic(n int) (ret [][]int) {
 	}
 	return
 }
+
+// Convert a bit array to a number
+// Strictly speaking, the bits are reversed, but that shouldn't matter.
+func getValue(number []int) (ret int) {
+	power := 1
+	for _, bit := range number {
+		ret += power * bit
+	}
+	return
+}
