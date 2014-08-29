@@ -46,3 +46,25 @@ func TestInitial(t *testing.T) {
 		}
 	}
 }
+
+// Measure a couple of use cases
+func BenchmarkGenerate10(t *testing.B) {
+	for i := 0; i < t.N; i++ {
+		monotonic(10)
+	}
+}
+func BenchmarkGenerate14(t *testing.B) {
+	for i := 0; i < t.N; i++ {
+		monotonic(14)
+	}
+}
+func BenchmarkGenerate16(t *testing.B) {
+	for i := 0; i < t.N; i++ {
+		monotonic(16)
+	}
+}
+func BenchmarkGenerate18(t *testing.B) {
+	for i := 0; i < t.N; i++ {
+		monotonic(18)
+	}
+}
