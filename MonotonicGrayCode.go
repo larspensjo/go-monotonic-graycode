@@ -1,16 +1,16 @@
 // Copyright 2014 Lars Pensjö
 //
-// Monotonic Gray Code  is free software: you can redistribute it and/or modify
+// monotonic_gray_code  is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, version 3.
 //
-// Ephenation is distributed in the hope that it will be useful,
+// monotonic_gray_code is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Ephenation.  If not, see <http://www.gnu.org/licenses/>.
+// along with monotonic_gray_code.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 // Create a sequence of Monotonic Gray Codes.
