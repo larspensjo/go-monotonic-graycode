@@ -41,38 +41,44 @@ func p(n int, j int, reverse bool) (ret [][]int) {
 		} else {
 			ret = [][]int{{1}, {0}}
 		}
-	} else if j >= 0 && j < n {
-		perm := pi(n - 1)
-		if !reverse {
-			for _, x := range p(n-1, j-1, false) {
-				t := []int{1}
-				for _, k := range perm {
-					t = append(t, x[k])
-				}
-				ret = append(ret, t)
+		return
+	}
+	if j < 0 || j >= n {
+		return
+	}
+	perm := pi(n - 1)
+	if !reverse {
+		for _, x := range p(n-1, j-1, false) {
+			t := []int{1}
+			for _, k := range perm {
+				t = append(t, x[k])
 			}
-			for _, x := range p(n-1, j, false) {
-				t := append([]int{0}, x...)
-				ret = append(ret, t)
+			ret = append(ret, t)
+		}
+		for _, x := range p(n-1, j, false) {
+			t := append([]int{0}, x...)
+			ret = append(ret, t)
+		}
+	} else {
+		for _, x := range p(n-1, j, true) {
+			t := append([]int{0}, x...)
+			ret = append(ret, t)
+		}
+		for _, x := range p(n-1, j-1, true) {
+			t := []int{1}
+			for _, k := range perm {
+				t = append(t, x[k])
 			}
-		} else {
-			for _, x := range p(n-1, j, true) {
-				t := append([]int{0}, x...)
-				ret = append(ret, t)
-			}
-			for _, x := range p(n-1, j-1, true) {
-				t := []int{1}
-				for _, k := range perm {
-					t = append(t, x[k])
-				}
-				ret = append(ret, t)
-			}
+			ret = append(ret, t)
 		}
 	}
-	return ret
+	return
 }
 
 func monotonic(n int) (ret [][]int) {
+	if n < 0 {
+		panic("Illegal argument")
+	}
 	for i := 0; i < n; i++ {
 		var p2 [][]int
 		if i%2 == 0 {
