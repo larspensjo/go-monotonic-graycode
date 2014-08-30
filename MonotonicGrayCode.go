@@ -15,7 +15,7 @@
 
 // Create a sequence of Monotonic Gray Codes.
 // Implementation is based on python script http://sciyoshi.com/2010/12/gray-codes/.
-package monotonic_gray_code
+package mgc
 
 func pi(n int) []int {
 	if n <= 1 {

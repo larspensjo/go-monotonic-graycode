@@ -13,7 +13,7 @@
 // along with monotonic_gray_code.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-package monotonic_gray_code
+package mgc
 
 import (
 	"fmt"

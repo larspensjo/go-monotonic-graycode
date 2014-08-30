@@ -13,10 +13,11 @@
 // along with monotonic_gray_code.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-package monotonic_gray_code
+package mgc
 
 import ()
 
+// The type representation of a Monotonic Gray Code number
 type Mgc int
 
 var convert_to_int []int
