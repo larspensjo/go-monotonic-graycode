@@ -13,8 +13,8 @@
 // along with Ephenation.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-// Implementation based on python script http://sciyoshi.com/2010/12/gray-codes/
-
+// Create a sequence of Monotonic Gray Codes.
+// Implementation is based on python script http://sciyoshi.com/2010/12/gray-codes/.
 package monotonic_gray_code
 
 func rotate_right(x []int, n int) []int {
