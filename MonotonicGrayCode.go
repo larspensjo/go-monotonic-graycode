@@ -17,21 +17,21 @@
 // Implementation is based on python script http://sciyoshi.com/2010/12/gray-codes/.
 package monotonic_gray_code
 
-func rotate_right(x []int, n int) []int {
-	l := len(x)
-	return append(x[l-n:], x[0:l-n]...)
-}
-
 func pi(n int) []int {
 	if n <= 1 {
 		return []int{0}
 	}
 	x := append(pi(n-1), n-1)
+	// Scramble the order
 	x2 := make([]int, len(x))
 	for i, k := range x {
-		x2[i] = x[k]
+		dest := i + 1
+		if dest == len(x) {
+			dest = 0
+		}
+		x2[dest] = x[k]
 	}
-	return rotate_right(x2, 1)
+	return x2
 }
 
 func p(n int, j int, reverse bool) (ret [][]int) {
