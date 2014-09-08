@@ -18,13 +18,14 @@ Distributed under GNU Lesser General Public License.
 ## Usage
 Initialize with the number of bits. This must be done before any other functions are used.
 ```
-mgc.Init(numBits)
+	import 	"github.com/larspensjo/go-monotonic-graycode"
+	mgc.Init(numBits)
 ```
 To get the Monotonic Gray Code for the integer 'n':
 ```
-mgc.GetMgc(n)
+	mgc.GetMgc(n)
 ```
 To convert a Monotonic Gray Code 'c' back to an integer:
 ```
-mgc.GetInt(c)
+	mgc.GetInt(c)
 ```
