@@ -26,8 +26,9 @@ var convert_to_mgc []Mgc
 // Initialize a sequence of numbers, of length 'count'
 // The tables are pre computed to speed up conversion
 func Init(count int) {
-	convert_to_int = make([]int32, count)
-	convert_to_mgc = make([]Mgc, count)
+	l := 1 << uint32(count)
+	convert_to_int = make([]int32, l)
+	convert_to_mgc = make([]Mgc, l)
 	m := monotonic(count)
 	for i, mgc := range m {
 		convert_to_int[getValue(mgc)] = int32(i)
