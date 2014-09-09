@@ -18,30 +18,35 @@ package mgc
 import ()
 
 // The type representation of a Monotonic Gray Code number
-type Mgc int
+type MgcNumber int
 
-var convert_to_int []int32
-var convert_to_mgc []Mgc
+type Mgc struct {
+	convert_to_int []int32
+	convert_to_mgc []MgcNumber
+}
 
 // Initialize a sequence of numbers, of length 'count'
 // The tables are pre computed to speed up conversion
-func Init(count int) {
-	l := 1 << uint32(count)
-	convert_to_int = make([]int32, l)
-	convert_to_mgc = make([]Mgc, l)
-	m := monotonic(count)
+func New(count uint32) *Mgc {
+	var ret Mgc
+	l := 1 << count
+	ret.convert_to_int = make([]int32, l)
+	ret.convert_to_mgc = make([]MgcNumber, l)
+	m := monotonic(int(count))
 	for i, mgc := range m {
-		convert_to_int[getValue(mgc)] = int32(i)
-		convert_to_mgc[i] = Mgc(getValue(mgc))
+		ret.convert_to_int[getValue(mgc)] = int32(i)
+		ret.convert_to_mgc[i] = MgcNumber(getValue(mgc))
 	}
+	return &ret
 }
 
 // Convert a Monotonic Gray Code to the corresponding integer. Init() has to called first.
-func GetInt(n Mgc) int32 {
-	return convert_to_int[n]
+func (m *Mgc) GetInt(n MgcNumber) int32 {
+	return m.convert_to_int[n]
 }
 
 // Get the n:th Monotonic Gray Code. Init() has to called first.
-func GetMgc(n int32) Mgc {
-	return convert_to_mgc[n]
+func (m *Mgc) GetMgc(n int32) MgcNumber {
+	return m.convert_to_mgc[n]
+}
 }
