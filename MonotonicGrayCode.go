@@ -97,6 +97,7 @@ func getValue(number []int) (ret int) {
 	power := 1
 	for _, bit := range number {
 		ret += power * bit
+		power *= 2
 	}
 	return
 }

@@ -25,17 +25,18 @@ type Mgc struct {
 	convert_to_mgc []MgcNumber
 }
 
-// Initialize a sequence of numbers, of length 'count'
+// Initialize a sequence of numbers, of length 'numBits'
 // The tables are pre computed to speed up conversion
-func New(count uint32) *Mgc {
+func New(numBits uint32) *Mgc {
 	var ret Mgc
-	l := 1 << count
+	l := 1 << numBits
 	ret.convert_to_int = make([]int32, l)
 	ret.convert_to_mgc = make([]MgcNumber, l)
-	m := monotonic(int(count))
+	m := monotonic(int(numBits))
 	for i, mgc := range m {
-		ret.convert_to_int[getValue(mgc)] = int32(i)
-		ret.convert_to_mgc[i] = MgcNumber(getValue(mgc))
+		v := getValue(mgc)
+		ret.convert_to_int[v] = int32(i)
+		ret.convert_to_mgc[i] = MgcNumber(v)
 	}
 	return &ret
 }
@@ -48,5 +49,4 @@ func (m *Mgc) GetInt(n MgcNumber) int32 {
 // Get the n:th Monotonic Gray Code. Init() has to called first.
 func (m *Mgc) GetMgc(n int32) MgcNumber {
 	return m.convert_to_mgc[n]
-}
 }

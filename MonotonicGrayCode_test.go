@@ -20,9 +20,16 @@ import (
 	"testing"
 )
 
-func main() {
+func ExamplePi() {
 	for i := 1; i < 17; i++ {
-		fmt.Println("monotonic(", i, "):", len(monotonic(i)))
+		fmt.Println("pi(", i, "):", pi(i))
+	}
+}
+
+func ExampleMonotonic() {
+	m := monotonic(5)
+	for _, n := range m {
+		fmt.Println(n)
 	}
 }
 
@@ -37,14 +44,11 @@ func SummarizeBits(vector []int) (count int) {
 }
 
 func TestInitial(t *testing.T) {
-	power := 2
-	for iter := 1; iter < 10; iter++ {
-		m := monotonic(iter)
-		// The number of elements shall double for every next iteration
-		if len(m) != power {
-			t.Error("Unexpected length monotonic", iter, ":", len(m))
+	for numBits := 1; numBits < 10; numBits++ {
+		m := monotonic(numBits)
+		if len(m) != 1<<uint32(numBits) {
+			t.Error("Unexpected length monotonic", numBits, ":", len(m))
 		}
-		power *= 2
 
 		// An important property is "monotonic". In this case, it means that we do not want
 		// two consequitive numbers to decrease number of bits, except at most by 1.
@@ -53,11 +57,26 @@ func TestInitial(t *testing.T) {
 			count := SummarizeBits(e)
 			delta := count - highest
 			if delta > 1 || delta < -1 {
-				t.Error("Not monotonic number for", iter)
+				t.Error("Not monotonic number for", numBits)
 			}
 			if count > highest {
 				highest = count
 			}
+		}
+	}
+}
+
+// Test that converting an integer to a MGC number, and back, gives back the original number
+func TestConversion(t *testing.T) {
+	const bits = 16
+	m := New(bits)
+	const max = 1 << bits
+	for i := int32(0); i < max; i++ {
+		a := m.GetMgc(i)
+		b := m.GetInt(a)
+		if b != i {
+			t.Error("Converting int", i, "gives mgc", a, "and back, gave", b)
+			t.FailNow() // No need to go through all the others
 		}
 	}
 }
