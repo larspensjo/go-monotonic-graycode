@@ -71,7 +71,7 @@ func TestConversion(t *testing.T) {
 	const bits = 16
 	m := New(bits)
 	const max = 1 << bits
-	for i := int32(0); i < max; i++ {
+	for i := uint32(0); i < max; i++ {
 		a := m.GetMgc(i)
 		b := m.GetInt(a)
 		if b != i {

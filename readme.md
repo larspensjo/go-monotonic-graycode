@@ -29,3 +29,9 @@ To convert a Monotonic Gray Code 'c' back to an integer:
 ```
 	numbers.GetInt(c)
 ```
+
+## Signed numbers
+This library only handles unsigned numbers.
+One way to use signed numbers, is to use a transformation.
+E.g. having the 16-bit MGC number 0-0x7FFF represent positive numbers as is, and 0x8000-0xFFFF represent the
+number -32768 to -1, respectively.

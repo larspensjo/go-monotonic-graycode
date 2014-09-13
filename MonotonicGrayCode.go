@@ -14,7 +14,7 @@
 //
 
 // Create a sequence of Monotonic Gray Codes.
-// Implementation is based on python script http://sciyoshi.com/2010/12/gray-codes/.
+// Implementation is based the Savage-Winkler algorithm, see python script at http://sciyoshi.com/2010/12/gray-codes/.
 package mgc
 
 func pi(n int) []int {

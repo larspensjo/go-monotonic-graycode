@@ -18,10 +18,10 @@ package mgc
 import ()
 
 // The type representation of a Monotonic Gray Code number
-type MgcNumber int
+type MgcNumber uint32
 
 type Mgc struct {
-	convert_to_int []int32
+	convert_to_int []uint32
 	convert_to_mgc []MgcNumber
 }
 
@@ -30,23 +30,23 @@ type Mgc struct {
 func New(numBits uint32) *Mgc {
 	var ret Mgc
 	l := 1 << numBits
-	ret.convert_to_int = make([]int32, l)
+	ret.convert_to_int = make([]uint32, l)
 	ret.convert_to_mgc = make([]MgcNumber, l)
 	m := monotonic(int(numBits))
 	for i, mgc := range m {
 		v := getValue(mgc)
-		ret.convert_to_int[v] = int32(i)
+		ret.convert_to_int[v] = uint32(i)
 		ret.convert_to_mgc[i] = MgcNumber(v)
 	}
 	return &ret
 }
 
 // Convert a Monotonic Gray Code to the corresponding integer. Init() has to called first.
-func (m *Mgc) GetInt(n MgcNumber) int32 {
+func (m *Mgc) GetInt(n MgcNumber) uint32 {
 	return m.convert_to_int[n]
 }
 
 // Get the n:th Monotonic Gray Code. Init() has to called first.
-func (m *Mgc) GetMgc(n int32) MgcNumber {
+func (m *Mgc) GetMgc(n uint32) MgcNumber {
 	return m.convert_to_mgc[n]
 }
